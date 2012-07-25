@@ -1,0 +1,108 @@
+Work out of apigee office
+SMTP alerts confirmation
+Add additional details like server name to identify where the alert came from
+List of files for SMTP alerts
+VPN accounts
+Redbox resources we need access to
+OA 4 issue
+JSON for S7
+Apigee applications Documentation (#1336)
+Smart monitoring (#1214)
+Top20 JSON issue
+Call
+JIRA ticket updation
+gateway backup coz its down
+CORS on R14
+
+S6 JSON in cache issue
+Cors on R15
+
+
+
+
+
+
+
+
+
+What days and how many days are you comfortable working out of the Apigee offices. I will also put in a request that they work out of our offices as well. I will then talk to Pradip and finalize the support structure we will use moving forward with your input as well.
+SMTP alerts. Please confirm that you were able to raise the fault from the status monitor endpoint once the cache was emptied and that the SMTP alert policy is in fact raised during your testing.
+Per previous email sent from Eric it looks like the alerts are working. Kindly update the message to include the Environment and/or IP (e.g. datapipe, production, Dev, QA, DIT/SIT, etc. So that they know which system is having the empty alerts issue. Make sense?
+Please check the code into vault for the feature so we can have it reviewed by Apigee.  [Girish: We are not sure what code is supposed to be checked into the vault. However all the code for Java as well as the applications, is being checked into the Github repositories now] [Can you check in the code that you did for SMTP alerts? What is the path in vault. Describe what was checked in detail so we can easily find the code we are looking for. We'd like to have apigee review the SMTP alerts code
+    Did you get all your VPN permission accessible again? or are you still locked out? (please confirm as it indicates that you were able to check into vault. Is your VPN working again?
+    Let me know in detail what you had access to before so I can ensure that you have the same permissions moving forward. List DB servers, Application Servers, Applications like Mingle, Vault, etc.
+    Please look into  http://mingle.rb.local:8080/projects/open_api/cards/1196 (OA4) as this is URGENT. I sent you the mobile client application via dropbox to get an access token. Make sure you meet all the requirements of the mingle card. Try using my VPN access since it might require network access. I also reached out to a developer here to troubleshoot as well since I saw the same error. Can you also confirm that you did get it working for the other OA call (e.g. OA1, OA3) Per the mingle card, just keep trying
+    VPN Access below:
+    USER: CORP\v-Brian.Tsai
+    PASS: BTredbox1! [Girish: We were still getting the same error. This may be because of the HTTPS certificates on the QA and DEV machines. We may need to add these onto our local machines. Were able to verify the other OA operations. They work as intended, allowing access only to their respective customer numbers ]
+    http://mingle.rb.local:8080/projects/open_api/cards/1299 (JSON) can you confirm that this was done on both QA gateways as it appeared to be working on both gateways earlier today [Girish: This has been updated on both the gateways and the fix has been checked into Git] [Is this in the R15 branch as well?]
+    Please look into http://mingle.rb.local:8080/projects/open_api/cards/1336 (documentation). [Girish: We have started working on this, and will keep you posted once its done][Yes this should be an easy task to complete. Just follow the mingle card]
+    Please look into mingle card #1214 [Girish: This card relates to SMART monitoring. We may need additional details for this card. It mentions a report or an audit trail for the cache update timestamp of RB as well as Apigee caches. Also, mentions comparing responses of the Apigee and RB APIs ]
+    [Please be specific as to the questions you have or how you plan on doing the implementation and the risks/concerns/dependencies that are involved]
+    Please answer question per previous email from Scott Sissil regarding the format of the JSON response/Unexpected syntax error reported by a developer
+    Plan on calling me Monday morning.
+
+
+qa2db27
+qa2db32
+devpsdb02
+qa2app27
+devpsapp02
+
+High Priority
+
+    Create an audit trail for every cache refresh job (Products/Stores/Inventory) on the Apigee side and the Redbox side. The report should indicated the last time the cache was successfully updated on both the Apigee side and Redbox side
+
+Low Priority
+    Create an audit trail for every cache refresh job (Products/Stores/Inventory) on the Apigee side and the Redbox side. The report should indicated the last time the cache was successfully updated on both the Apigee side and Redbox side
+    Compare Redbox.com Top 20 to API Top 20 response, if top 20 order is different throw a warning alert
+    Compare Redbox.com Top 20 to API Top 20 response, if top 20 does not contain 18 out of the 20 titles in Redbox.com top 20, throw an error alert
+    Compare Redbox.com Top 20 to API Top 20 response, if top 10 does not contain 9 out of the top 10 titles in Redbox.com top 20, throw an error alert
+    Compare the /products/movies and /products/movies/default response to the movies returned on the http://www.redbox.com/movies movies page. If any movies that exist on redbox.com do not show up in either of the API endpoint responses, throw an error alert
+
+
+_transportvar.Origin
+_transportvar.Access-Control-Request-Method
+_transportvar.Access-Control-Request-Headers
+
+<sci:PolicyAttachment enforcementPoint="ClientRequest-User" policyName="HandleCORSRequestsPolicy"/>
+<sci:PolicyAttachment enforcementPoint="PreClientRequest" policyName="HandleCORSOptionsRequestsPolicy"/>
+<sci:PolicyAttachment enforcementPoint="ClientResponse-User" policyName="HandleCORSResponsesPolicy"/>
+
+
+
+new file:   CustomerAccountApplication/policies/HandleCORSOptionsRequestsPolicy.xml
+new file:   CustomerAccountApplication/policies/HandleCORSRequestsPolicy.xml
+new file:   CustomerAccountApplication/policies/HandleCORSResponsesPolicy.xml
+new file:   CustomerAccountApplication/resources/script/CORSRequestScript.py
+new file:   CustomerAccountApplication/resources/script/ValidateOriginHeaderScript.py
+new file:   InventoryApplication/policies/HandleCORSOptionsRequestsPolicy.xml
+new file:   InventoryApplication/policies/HandleCORSRequestsPolicy.xml
+new file:   InventoryApplication/policies/HandleCORSResponsesPolicy.xml
+new file:   InventoryApplication/resources/script/CORSRequestScript.py
+new file:   InventoryApplication/resources/script/ValidateOriginHeaderScript.py
+new file:   ProductsApplicationL1/policies/HandleCORSOptionsRequestsPolicy.xml
+new file:   ProductsApplicationL1/policies/HandleCORSRequestsPolicy.xml
+new file:   ProductsApplicationL1/policies/HandleCORSResponsesPolicy.xml
+new file:   ProductsApplicationL1/resources/script/CORSRequestScript.py
+new file:   ProductsApplicationL1/resources/script/ValidateOriginHeaderScript.py
+new file:   ReservationApplication/policies/HandleCORSOptionsRequestsPolicy.xml
+new file:   ReservationApplication/policies/HandleCORSRequestsPolicy.xml
+new file:   ReservationApplication/policies/HandleCORSResponsesPolicy.xml
+new file:   ReservationApplication/resources/script/CORSRequestScript.py
+new file:   ReservationApplication/resources/script/ValidateOriginHeaderScript.py
+new file:   StoresApplicationL1/policies/HandleCORSOptionsRequestsPolicy.xml
+new file:   StoresApplicationL1/policies/HandleCORSRequestsPolicy.xml
+new file:   StoresApplicationL1/policies/HandleCORSResponsesPolicy.xml
+new file:   StoresApplicationL1/resources/script/CORSRequestScript.py
+new file:   StoresApplicationL1/resources/script/ValidateOriginHeaderScript.py
+
+modified:   CustomerAccountApplication/application.xml
+modified:   InventoryApplication/application.xml
+modified:   InventoryApplication/services/inventory/inventory.xml
+modified:   ProductsApplicationL1/application.xml
+modified:   ProductsApplicationL1/services/ProductsL1/ProductsL1.xml
+modified:   ReservationApplication/application.xml
+modified:   ReservationApplication/services/ReservationServices/ReservationServices.xml
+modified:   StoresApplicationL1/application.xml
+modified:   StoresApplicationL1/services/stores/stores.xml

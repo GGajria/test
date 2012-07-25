@@ -1,0 +1,12 @@
+Fixing AV3 defect
+
+OAuth20/application.xml
+OAuth20/resources/script/OA4SetUserAttributes.py
+OAuth20/services/AccessToken/policies/AccessTokenRequestParams_AccessToken_Password.xml 
+
+Java code for SMART monitoring
+SMTP details
+Preparing sheet for checked in files
+Documentation on R16
+OA4 on R16
+CORS on R16
